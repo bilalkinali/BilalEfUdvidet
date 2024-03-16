@@ -54,7 +54,7 @@ namespace BusinessLogic
                 Name = vUI.Name,
                 Description = vUI.Description,
                 Price = vUI.Price,
-                VaregruppeId = vUI.Id
+                VaregruppeId = vUI.VaregruppeId
             };
             return v;
         }
