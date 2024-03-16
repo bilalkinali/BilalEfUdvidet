@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dgv = new DataGridView();
+            btnCreate = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             SuspendLayout();
             // 
@@ -43,11 +44,21 @@
             dgv.Size = new Size(776, 339);
             dgv.TabIndex = 0;
             // 
+            // btnCreate
+            // 
+            btnCreate.Location = new Point(355, 390);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(75, 23);
+            btnCreate.TabIndex = 1;
+            btnCreate.Text = "Create";
+            btnCreate.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCreate);
             Controls.Add(dgv);
             Name = "Form1";
             Text = "Form1";
@@ -58,5 +69,6 @@
         #endregion
 
         private DataGridView dgv;
+        private Button btnCreate;
     }
 }

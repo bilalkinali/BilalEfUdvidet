@@ -13,6 +13,13 @@ namespace UI
             vBL = new();
             InitializeComponent();
             dgv.VisibleChanged += Dgv_VisibleChanged;
+            btnCreate.Click += BtnCreate_Click;
+        }
+
+        private void BtnCreate_Click(object? sender, EventArgs e)
+        {
+            CreateVaregruppe createVaregruppe = new CreateVaregruppe(vgBL);
+            createVaregruppe.ShowDialog();
         }
 
         private async void Dgv_VisibleChanged(object? sender, EventArgs e)

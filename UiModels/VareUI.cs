@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UiModels
 {
-    internal class VareUI
+    public class VareUI
     {
         public VareUI()
         {

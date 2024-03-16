@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UiModels
 {
-    internal class VaregruppeUI
+    public class VaregruppeUI
     {
         public VaregruppeUI()
         {
