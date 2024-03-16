@@ -5,26 +5,34 @@ namespace UI
 {
     public partial class Form1 : Form
     {
-        VaregruppeBL vgBL;
-        VareBL vBL;
+        VaregruppeBL varegruppeBL;
+        VareBL vareBL;
+
         public Form1()
         {
-            vgBL = new();
-            vBL = new();
+            varegruppeBL = new();
+            vareBL = new();
             InitializeComponent();
-            dgv.VisibleChanged += Dgv_VisibleChanged;
+
+            dgvVaregruppe.VisibleChanged += Dgv_VisibleChanged;
+            dgvVare.VisibleChanged += DgvVare_VisibleChanged;
             btnCreate.Click += BtnCreate_Click;
-        }
+        }        
 
         private void BtnCreate_Click(object? sender, EventArgs e)
         {
-            CreateVaregruppe createVaregruppe = new CreateVaregruppe(vgBL);
+            CreateVaregruppe createVaregruppe = new CreateVaregruppe(varegruppeBL);
             createVaregruppe.ShowDialog();
         }
 
         private async void Dgv_VisibleChanged(object? sender, EventArgs e)
         {
-            dgv.DataSource = await vgBL.GetAsync();
+            dgvVaregruppe.DataSource = await varegruppeBL.GetAsync();
+        }
+
+        private async void DgvVare_VisibleChanged(object? sender, EventArgs e)
+        {
+            dgvVare.DataSource = await vareBL.GetAsync();
         }
     }
 }

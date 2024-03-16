@@ -9,11 +9,13 @@ namespace BusinessLogic
     {
         VaregruppeDA vgDA;
         ModelConverter modelConverter;
+        Validation.VaregruppeValidator vgValidator;
 
         public VaregruppeBL()
         {
             vgDA = new VaregruppeDA();
             modelConverter = new ModelConverter();
+            vgValidator = new Validation.VaregruppeValidator();
         }
 
         public async Task<List<VaregruppeUI>> GetAsync()
@@ -33,7 +35,25 @@ namespace BusinessLogic
 
         public async Task<bool> CreateAsync(VaregruppeUI vgUI)
         {
+            if (!vgValidator.ValidGroup(vgUI))
+            {
+                return false;
+            }
             return await vgDA.CreateAsync(modelConverter.ConvertFromVaregruppeUI(vgUI));
+        }
+
+        public async Task<bool> UpdateAsync(VaregruppeUI vgUI)
+        {
+            if (vgValidator.ValidGroup(vgUI))
+            {
+                return false;
+            }
+            return await vgDA.UpdateAsync(modelConverter.ConvertFromVaregruppeUI(vgUI));
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            return await vgDA.DeleteAsync(id);
         }
     }
 }
