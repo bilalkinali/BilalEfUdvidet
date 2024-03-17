@@ -13,9 +13,9 @@ namespace BusinessLogic
         public ModelConverter() { }
 
         // VaregruppeUI                                                   --*
-        public UiModels.VaregruppeUI ConvertFromVaregruppeEntity(EntityModels.Varegruppe vg)
+        public VaregruppeUI ConvertFromVaregruppeEntity(Varegruppe vg)
         {
-            UiModels.VaregruppeUI vgUI = new UiModels.VaregruppeUI
+            VaregruppeUI vgUI = new VaregruppeUI
             {
                 Id = vg.Id,
                 Name = vg.Name,
@@ -31,10 +31,11 @@ namespace BusinessLogic
             return vgUI;
         }
 
-        public EntityModels.Varegruppe ConvertFromVaregruppeUI(UiModels.VaregruppeUI vgUI)
+        public Varegruppe ConvertFromVaregruppeUI(VaregruppeUI vgUI)
         {
-            EntityModels.Varegruppe vg = new EntityModels.Varegruppe
+            Varegruppe vg = new Varegruppe
             {
+                Id = vgUI.Id,
                 Name = vgUI.Name
             };
             return vg;
@@ -70,11 +71,6 @@ namespace BusinessLogic
                 Price = vUI.Price,
                 VaregruppeId = vUI.VaregruppeId
             };
-
-            //if (vUI.VaregruppeUI != null)
-            //{
-            //    v.VaregruppeUI = ConvertFromVaregruppeUI(vUI.VaregruppeUI);
-            //}
             return v;
         }
     }
