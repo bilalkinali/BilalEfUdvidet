@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20240311220129_init")]
-    partial class init
+    [Migration("20240317154308_added prop")]
+    partial class addedprop
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,9 +60,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Items")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

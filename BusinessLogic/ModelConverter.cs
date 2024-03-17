@@ -12,20 +12,28 @@ namespace BusinessLogic
     {
         public ModelConverter() { }
 
-        // Varegruppe                                                   --*
-        public VaregruppeUI ConvertFromVaregruppeEntity(Varegruppe vg)
+        // VaregruppeUI                                                   --*
+        public UiModels.VaregruppeUI ConvertFromVaregruppeEntity(EntityModels.Varegruppe vg)
         {
-            VaregruppeUI vgUI = new VaregruppeUI
+            UiModels.VaregruppeUI vgUI = new UiModels.VaregruppeUI
             {
                 Id = vg.Id,
                 Name = vg.Name,
+                VareListe = vg.VareListe.Select(x => new VareUI
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Price = x.Price,
+                    VaregruppeId = x.VaregruppeId
+                }).ToList()
             };
             return vgUI;
         }
 
-        public Varegruppe ConvertFromVaregruppeUI(VaregruppeUI vgUI)
+        public EntityModels.Varegruppe ConvertFromVaregruppeUI(UiModels.VaregruppeUI vgUI)
         {
-            Varegruppe vg = new Varegruppe
+            EntityModels.Varegruppe vg = new EntityModels.Varegruppe
             {
                 Name = vgUI.Name
             };
@@ -44,6 +52,11 @@ namespace BusinessLogic
                 Price = v.Price,
                 VaregruppeId = v.VaregruppeId
             };
+
+            if (v.Varegruppe != null)
+            {
+                vUI.Varegruppe = ConvertFromVaregruppeEntity(v.Varegruppe);
+            }
             return vUI;
         }
 
@@ -51,11 +64,17 @@ namespace BusinessLogic
         {
             Vare v = new Vare
             {
+                Id = vUI.Id,
                 Name = vUI.Name,
                 Description = vUI.Description,
                 Price = vUI.Price,
                 VaregruppeId = vUI.VaregruppeId
             };
+
+            //if (vUI.VaregruppeUI != null)
+            //{
+            //    v.VaregruppeUI = ConvertFromVaregruppeUI(vUI.VaregruppeUI);
+            //}
             return v;
         }
     }

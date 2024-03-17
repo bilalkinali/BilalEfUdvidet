@@ -3,7 +3,7 @@ using EntityModels;
 
 namespace DataAccess
 {
-    internal class VaregruppeDbContext : DbContext
+    internal class StoreDbContext : DbContext
     {
         public DbSet<Varegruppe> Varegruppe { get; set; }
         public DbSet<Vare> Vare { get; set; }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(VaregruppeDbContext))]
+    [DbContext(typeof(StoreDbContext))]
     [Migration("20240311221650_removed-prop")]
     partial class removedprop
     {

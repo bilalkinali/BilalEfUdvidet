@@ -11,35 +11,38 @@ namespace BusinessLogic.Validation
     public class VareValidator
     {
         Regex vText;
-        Regex vDigit;
+        //Regex vDigit;
 
         public VareValidator()
         {
             // Name + digits (0-9) + comma (,) + period (.)
             vText = new Regex("^[A-Za-zÆØÅæøå0-9\\s-,.]+$");
             // Allows digits
-            vDigit = new Regex("^[0-9,.]+$");
+            //vDigit = new Regex("^[0-9]+$");
         }
 
         public bool ValidName(string name)                      // Name     --*
         {
-            return !string.IsNullOrWhiteSpace(name)
-                && name.Length >= 2 && name.Length <= 30        // Length
-                && vText.IsMatch(name);                         // Pattern
+            return !string.IsNullOrWhiteSpace(name) &&
+                name.Length >= 2 && name.Length <= 30 &&       // Length
+                vText.IsMatch(name);                         // Pattern
         }
 
         public bool ValidDescription(string text)               // Name     --*
         {
-            return !string.IsNullOrWhiteSpace(text)
-                && text.Length >= 2 && text.Length <= 500       // Length
-                && vText.IsMatch(text);                         // Pattern
+            return !string.IsNullOrWhiteSpace(text) &&
+                text.Length >= 2 && text.Length <= 500 &&      // Length
+                vText.IsMatch(text);                         // Pattern
         }
 
 
-        public bool ValidPrice(string price)                    // Postcode --*
+        public bool ValidPrice(string price)                    // Price    --*
         {
-            return !string.IsNullOrEmpty(price)
-                && vDigit.IsMatch(price);                       // Pattern
+            double x = 0;
+            bool vPrice = double.TryParse(price, out x);
+            if (vPrice)
+                return x > 0;
+            return vPrice;
         }
 
         public bool ValidVare(VareUI v)
