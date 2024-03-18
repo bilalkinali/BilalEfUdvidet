@@ -42,13 +42,16 @@ namespace DataAccess
         {
             await db.AddAsync(vare);
             bool result = await db.SaveChangesAsync() > 0;
+            db.ChangeTracker.Clear();
             return result;
         }
 
         public async Task<bool> CreateVaregruppeAsync(Varegruppe vareGruppe)
         {
             await db.Varegruppe.AddAsync(vareGruppe);
-            return await db.SaveChangesAsync() > 0;
+            bool result = await db.SaveChangesAsync() > 0;
+            db.ChangeTracker.Clear();
+            return result;
         }
 
         public async Task<bool> UpdateVareAsync(Vare vare)
